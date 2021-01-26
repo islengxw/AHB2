@@ -1,0 +1,4 @@
+#! /bin/bash
+vcs -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS -Wl,--no-as-needed -sverilog -ntb_opts uvm -debug_access+pp -debug_access+all -cm line+tgl+fsm -timescale='1ns/1ps' -full64 -f file.list -l compile.log
+./simv +UVM_TESTNAME=incrx_test -l run.log
+#./simv +UVM_TESTNAME=add_test -l run.log
