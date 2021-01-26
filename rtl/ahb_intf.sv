@@ -8,16 +8,16 @@
 
 interface ahb_intf(input logic HCLK);
 
-        logic HRESETn;
-        logic HREADY;
-        logic [1:0] HTRANS;
-        logic [2:0] HBURST;
-        logic [2:0] HSIZE;
-        logic HWRITE;
-        logic [31:0] HADDR;
-        logic [31:0] HWDATA;
-        logic [31:0] HRDATA;
-        logic [1:0] HRESP;
+        bit HRESETn;
+        bit HREADY;
+        bit [1:0] HTRANS;
+        bit [2:0] HBURST;
+        bit [2:0] HSIZE;
+        bit HWRITE;
+        bit [31:0] HADDR;
+        bit [31:0] HWDATA;
+        bit [31:0] HRDATA;
+        bit [1:0] HRESP;
 
 
         clocking mdrv_cb@(posedge HCLK);

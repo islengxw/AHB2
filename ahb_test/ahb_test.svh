@@ -147,7 +147,7 @@ endclass: incrx_test
                 reset_vseq_h = ahb_reset_vseq::type_id::create("reset_vseq_h", this);
                 set_vseq_h = ahb_set_vseq::type_id::create("set_vseq_h", this);
                 incrx_vseq_h = ahb_incrx_vseq::type_id::create("incrx_vseq_h", this);
-                ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
+            //    ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
                 idle_vseq_h = ahb_idle_vseq::type_id::create("idle_vseq_h", this);
                 phase.raise_objection(this);
 
@@ -160,7 +160,10 @@ endclass: incrx_test
                         repeat(10)
                         begin
                                 fork
+								begin
+									ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
                                         ready_vseq_h.start(env_h.vseqr_h);
+									end
                                 join_none
 
                                 incrx_vseq_h.start(env_h.vseqr_h);
@@ -205,14 +208,14 @@ endclass: wrapx_test
                 reset_vseq_h = ahb_reset_vseq::type_id::create("reset_vseq_h", this);
                 set_vseq_h = ahb_set_vseq::type_id::create("set_vseq_h", this);
                 wrapx_vseq_h = ahb_wrapx_vseq::type_id::create("wrapx_vseq_h", this);
-                ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
+           //     ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
                 idle_vseq_h = ahb_idle_vseq::type_id::create("idle_vseq_h", this);
                 phase.raise_objection(this);
 
                         fork
-                                reset_vseq_h.start(env_h.vseqr_h);
-                                reset_vseq_h.start(env_h.vseqr_h);
-                                reset_vseq_h.start(env_h.vseqr_h);
+                   //             reset_vseq_h.start(env_h.vseqr_h);
+                   //             reset_vseq_h.start(env_h.vseqr_h);
+                   //             reset_vseq_h.start(env_h.vseqr_h);
                                 reset_vseq_h.start(env_h.vseqr_h);
                                 set_vseq_h.start(env_h.vseqr_h);
                         join_none
@@ -220,6 +223,7 @@ endclass: wrapx_test
                         repeat(10)
                         begin
                                 fork
+									ready_vseq_h = ahb_ready_vseq::type_id::create("ready_vseq_h", this);
                                         ready_vseq_h.start(env_h.vseqr_h);
                                 join_none
                                 wrapx_vseq_h.start(env_h.vseqr_h);
