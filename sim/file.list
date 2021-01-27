@@ -5,5 +5,11 @@
 +incdir+../ahb_slv_agent
 ../ahb_test/ahb_test_pkg.sv
 ../rtl/ahb_intf.sv
+../rtl/cmsdk_ahb_to_ahb_apb_async_launch.v
+../rtl/cmsdk_ahb_to_ahb_apb_async_master.v
+../rtl/cmsdk_ahb_to_ahb_apb_async_sample_and_hold.v
+../rtl/cmsdk_ahb_to_ahb_apb_async_slave.v
+../rtl/cmsdk_ahb_to_ahb_apb_async_synchronizer.v
+../rtl/cmsdk_ahb_to_ahb_apb_async.v
 ../ahb_env/top.sv
 

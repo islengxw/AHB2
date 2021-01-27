@@ -6,7 +6,7 @@
  Filename: ahb_intf.sv
 **********************************************************/
 
-interface ahb_intf(input logic HCLK);
+interface ahb_intf(input logic HCLK, input logic HCLK_S);
 
         bit HRESETn;
         bit HREADY;
@@ -18,6 +18,16 @@ interface ahb_intf(input logic HCLK);
         bit [31:0] HWDATA;
         bit [31:0] HRDATA;
         bit [1:0] HRESP;
+		// slave ahb bus
+        bit HREADY_S;
+        bit [1:0] HTRANS_S;
+        bit [2:0] HBURST_S;
+        bit [2:0] HSIZE_S;
+        bit HWRITE_S;
+        bit [31:0] HADDR_S;
+        bit [31:0] HWDATA_S;
+        bit [31:0] HRDATA_S;
+        bit [1:0] HRESP_S;
 
 
         clocking mdrv_cb@(posedge HCLK);
@@ -50,33 +60,33 @@ interface ahb_intf(input logic HCLK);
 
         endclocking
 
-        clocking sdrv_cb@(posedge HCLK);
+        clocking sdrv_cb@(posedge HCLK_S);
                 default input #1 output #0;
 
-                input HTRANS;
-                input HBURST;
-                input HSIZE;
-                input HWRITE;
-                input HADDR;
-                input HWDATA;
-                inout HREADY;
-                output HRESP;
-                output negedge HRDATA;
+                input HTRANS_S;
+                input HBURST_S;
+                input HSIZE_S;
+                input HWRITE_S;
+                input HADDR_S;
+                input HWDATA_S;
+                inout HREADY_S;
+                output HRESP_S;
+                output negedge HRDATA_S;
 
         endclocking
 
-        clocking smon_cb@(posedge HCLK);
+        clocking smon_cb@(posedge HCLK_S);
                 default input #1 output #0;
 
-                input HTRANS;
-                input HBURST;
-                input HSIZE;
-                input HWRITE;
-                input HADDR;
-                input HWDATA;
-                input HREADY;
-                input HRESP;
-                input HRDATA;
+                input HTRANS_S;
+                input HBURST_S;
+                input HSIZE_S;
+                input HWRITE_S;
+                input HADDR_S;
+                input HWDATA_S;
+                input HREADY_S;
+                input HRESP_S;
+                input HRDATA_S;
 
         endclocking
 

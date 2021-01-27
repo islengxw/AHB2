@@ -70,36 +70,36 @@ endclass: ahb_sdriver
         begin: driver
                 if(req.response == ERROR)
                 begin
-                        vif.sdrv_cb.HRESP <= 1;
-                        vif.sdrv_cb.HREADY <= 0;
+                        vif.sdrv_cb.HRESP_S <= 1;
+                        vif.sdrv_cb.HREADY_S <= 0;
                         @(vif.sdrv_cb);
-                        vif.sdrv_cb.HREADY <= 1;
+                        vif.sdrv_cb.HREADY_S <= 1;
                         @(vif.sdrv_cb);
                 end
                 else
                 begin
-                        vif.sdrv_cb.HRESP <= 0;
+                        vif.sdrv_cb.HRESP_S <= 0;
                         foreach(req.ready[i])
                         begin
-                                vif.sdrv_cb.HREADY <= req.ready[i];
-                                if((vif.sdrv_cb.HREADY)&&(!vif.sdrv_cb.HWRITE)&&(vif.sdrv_cb.HTRANS != 0)&&(vif.sdrv_cb.HTRANS != 1))
-                                        vif.sdrv_cb.HRDATA <= {$random};
-                                if(vif.sdrv_cb.HSIZE > 2)
-                                        vif.sdrv_cb.HRESP <= 1;
-                                else vif.sdrv_cb.HRESP <= 0;
+                                vif.sdrv_cb.HREADY_S <= req.ready[i];
+                                if((vif.sdrv_cb.HREADY_S)&&(!vif.sdrv_cb.HWRITE_S)&&(vif.sdrv_cb.HTRANS_S != 0)&&(vif.sdrv_cb.HTRANS_S != 1))
+                                        vif.sdrv_cb.HRDATA_S <= {$random};
+                                if(vif.sdrv_cb.HSIZE_S > 2)
+                                        vif.sdrv_cb.HRESP_S <= 1;
+                                else vif.sdrv_cb.HRESP_S <= 0;
 
                                 @(vif.sdrv_cb);
                         end
-                        vif.sdrv_cb.HREADY <= 1'b1;
+                        vif.sdrv_cb.HREADY_S <= 1'b1;
                 end
         end: driver
         endtask
 
         task ahb_sdriver::reset_();
                 wait(!vif.HRESETn);
-                        vif.sdrv_cb.HRESP <= 0;
-                        vif.sdrv_cb.HREADY <= 1;
-                        vif.sdrv_cb.HRDATA <= 0;
+                        vif.sdrv_cb.HRESP_S <= 0;
+                        vif.sdrv_cb.HREADY_S <= 1;
+                        vif.sdrv_cb.HRDATA_S <= 0;
                 @(vif.sdrv_cb);
         endtask
 
